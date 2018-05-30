@@ -7,7 +7,8 @@ configure_args="--enable-opus --enable-mikmod --enable-neighbor-plugins
  --enable-soundcloud --enable-pipe-output --disable-twolame-encoder
  --disable-sidplay --enable-bzip2 --enable-zzip $(vopt_enable jack)
  $(vopt_enable lame lame-encoder) $(vopt_enable mpcdec mpc)
- $(vopt_enable pulseaudio pulse) $(vopt_enable wavpack) $(vopt_enable cdio cdio-paranoia)
+ $(vopt_enable pulseaudio pulse) $(vopt_enable wavpack)
+ $(vopt_enable cdio cdio-paranoia) $(vopt_enable gme)
  $(vopt_enable libao ao) $(vopt_enable sndio sndio) --disable-systemd-daemon"
 hostmakedepends="pkg-config"
 makedepends="avahi-glib-libs-devel boost-devel faad2-devel ffmpeg-devel
@@ -18,7 +19,7 @@ makedepends="avahi-glib-libs-devel boost-devel faad2-devel ffmpeg-devel
  $(vopt_if jack 'jack-devel') $(vopt_if lame 'lame-devel')
  $(vopt_if libao 'libao-devel') $(vopt_if mpcdec 'libmpcdec-devel')
  $(vopt_if pulseaudio 'pulseaudio-devel') $(vopt_if sndio 'sndio-devel')
- $(vopt_if wavpack 'wavpack-devel')"
+ $(vopt_if wavpack 'wavpack-devel') $(vopt_if gme 'libgme-devel')"
 conf_files="/etc/mpd.conf"
 system_accounts="mpd"
 mpd_homedir="/var/lib/mpd"
@@ -30,9 +31,10 @@ distfiles="https://www.musicpd.org/download/mpd/${version%.*}/mpd-${version}.tar
 checksum=a9e458c6e07cdf62649de7722e1e5a7f13aa82eeb397bfbbebc07cf5cf273584
 
 # Package build options
-build_options="jack lame mpcdec pulseaudio libao wavpack sndio cdio"
+build_options="jack lame mpcdec pulseaudio libao wavpack sndio cdio gme"
 desc_option_cdio="Enable libcdio_paranoia input plugin"
-build_options_default="pulseaudio libao sndio cdio"
+desc_option_gme="Enable support for gme library"
+build_options_default="pulseaudio libao sndio cdio gme"
 
 pre_configure() {
 	sed -i '/^doc_DATA =/s,doc/mpdconf.example,,' Makefile.in
