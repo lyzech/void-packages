@@ -1,15 +1,15 @@
 # Template file for 'openscad'
 pkgname=openscad
-version=2015.03.2
-revision=11
+version=2019.01.RC2
+revision=1
 _distver="${version%.*}-${version##*.}"
 wrksrc="${pkgname}-${_distver}"
 build_style=qmake
-hostmakedepends="bison flex pkg-config"
-makedepends="cgal-devel harfbuzz-devel opencsg-devel qscintilla-qt5-devel"
+hostmakedepends="bison flex pkg-config itstool"
+makedepends="cgal-devel harfbuzz-devel opencsg-devel qscintilla-qt5-devel libzip-devel libxml2-devel qt5-multimedia-devel eigen"
 short_desc="The programmers solid 3D CAD modeller"
 maintainer="Pierre Allegraud <pierre.allegraud@crans.org>"
 license="GPL-2.0-or-later"
 homepage="http://www.openscad.org"
 distfiles="http://files.openscad.org/${pkgname}-${_distver}.src.tar.gz"
-checksum="a2535bb9e27d96e10e1e19268a596155164c7129d410a0c7f96edc2d09400083"
+checksum="1edc7d82b418007f4c948a0c5c81abe405b1888ad70d92c0689262f1a3589341"
